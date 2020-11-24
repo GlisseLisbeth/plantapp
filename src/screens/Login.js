@@ -2,8 +2,8 @@ import React from 'react';
 
 const Login = () => {
   return (
-    <div className="bg-red-300">
-      <h1 className="textCenter text-2xl text-black font light">Login</h1>
+    <div>
+      <h1 className="text-center text-2xl text-black font light">Login</h1>
       <div className="flex justify-center mt-5">
         <div className="w-full max-w-sm">
           <form className="bg-white rounded shadow.md px-8 pt-6 pb-8 mb-4">

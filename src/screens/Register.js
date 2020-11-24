@@ -113,7 +113,7 @@ const Register = () => {
                   className="appearance-none border-0 border-b rounded-none border-gray-300 w-full py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="password"
                   type="password"
-                  placeholder="Confirmar Password"
+                  placeholder="Confirmar password"
                   name="password2"
                   value={password2}
                   onChange={handleInputChange}

@@ -1,11 +1,11 @@
 import React from 'react'
-import Header from './components/Header'
+import Login from './screens/Login';
 
 
 const App = () => {
 
     return (
-        <Header/>
+        <Login/>
     )
 }
 

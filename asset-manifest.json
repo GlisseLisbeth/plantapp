@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/plantapp/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/plantapp/static/js/main.3d705b7d.chunk.js",
+    "main.js.map": "/plantapp/static/js/main.3d705b7d.chunk.js.map",
+    "runtime-main.js": "/plantapp/static/js/runtime-main.06745544.js",
+    "runtime-main.js.map": "/plantapp/static/js/runtime-main.06745544.js.map",
+    "static/js/2.39aa20d9.chunk.js": "/plantapp/static/js/2.39aa20d9.chunk.js",
+    "static/js/2.39aa20d9.chunk.js.map": "/plantapp/static/js/2.39aa20d9.chunk.js.map",
+    "static/js/3.0a27939c.chunk.js": "/plantapp/static/js/3.0a27939c.chunk.js",
+    "static/js/3.0a27939c.chunk.js.map": "/plantapp/static/js/3.0a27939c.chunk.js.map",
+    "index.html": "/plantapp/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/plantapp/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.39aa20d9.chunk.js.LICENSE.txt": "/plantapp/static/js/2.39aa20d9.chunk.js.LICENSE.txt",
+    "static/media/icon.e0f49691.png": "/plantapp/static/media/icon.e0f49691.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.06745544.js",
+    "static/js/2.39aa20d9.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.3d705b7d.chunk.js"
+  ]
+}

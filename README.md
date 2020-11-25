@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Table of contents
 * [About the project](#about-the-project)
-* [Tools, Libraries and more ...](#tools-libraries-and-more-...)
+* [Tools, Libraries and more](#tools-libraries-and-more)
 * [Requeriments](#requeriments)
 * [Deploy Local](#deploy-local)
 * [Deploy Production](#deploy-production)
@@ -25,7 +25,7 @@ Allows you to view the list of plants stored in the application. And it also all
 
 The development was carried out with the implemented technologies, even the application is responsive.
 
-### Tools, Libraries and more ...
+### Tools, libraries and more
 
   - Firestore: Cloud Firestore is a NoSQL document database that lets you easily store, sync, and query data for your mobile and web apps - at global scale.
   - ReactJS: Is an open-source, front end, JavaScript library for building user interfaces or UI components.

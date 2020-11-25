@@ -12,13 +12,13 @@ export const startNewPlant = () => {
         const { uid } = getState().auth;
         
         const newPlant = {
-            title: '',
-            body: '',
+            name: '',
+            description: '',
             date: new Date().getTime()
         }
-
+        
         try {
-            const doc = await db.collection(`${ uid }/plants`).add( newPlant );
+            const doc = await db.collection(`${ uid }/admin/plants`).add( newPlant );
     
             dispatch( activePlant( doc.id, newPlant ) );
             dispatch( addNewPlant( doc.id, newPlant ) );
@@ -42,17 +42,16 @@ export const activePlant = ( id, plant ) => ({
 export const addNewPlant = ( id, plant ) => ({
     type: types.plantsAddNew,
     payload: {
-        id, ...plant
+        id, 
+        ...plant
     }
 })
 
 
 export const startLoadingPlants = ( uid ) => {
     return async( dispatch ) => {
-        
         const plants = await loadPlants( uid );
         dispatch( setPlants( plants ) );
-
     }
 }
 
@@ -75,10 +74,10 @@ export const startSavePlant = ( plant ) => {
         const plantToFirestore = { ...plant };
         delete plantToFirestore.id;
 
-        await db.doc(`${ uid }/plants/${ plant.id }`).update( plantToFirestore );
+        await db.doc(`${ uid }/admin/plants/${ plant.id }`).update( plantToFirestore );
 
         dispatch( refreshPlant( plant.id, plantToFirestore ) );
-        Swal.fire('Saved', plant.title, 'success');
+        Swal.fire('Guardado', plant.title, 'success');
     }
 }
 
@@ -100,8 +99,8 @@ export const startUploading = ( file ) => {
         const { active:activePlant } = getState().plants;
 
         Swal.fire({
-            title: 'Uploading...',
-            text: 'Please wait...',
+            title: 'Cargando...',
+            text: 'Espere...',
             allowOutsideClick: false,
             onBeforeOpen: () => {
                 Swal.showLoading();
@@ -109,6 +108,7 @@ export const startUploading = ( file ) => {
         });
 
         const fileUrl = await fileUpload( file );
+        console.log(fileUrl);
         activePlant.url = fileUrl;
 
         dispatch( startSavePlant( activePlant ) )
@@ -123,7 +123,7 @@ export const startDeleting = ( id ) => {
     return async( dispatch, getState ) => {
          
         const uid = getState().auth.uid;
-        await db.doc(`${ uid }/plants/${ id }`).delete();
+        await db.doc(`${ uid }/admin/plants/${ id }`).delete();
 
         dispatch( deletePlant(id) );
 

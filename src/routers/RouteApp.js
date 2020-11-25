@@ -14,6 +14,7 @@ import RoutePrivate from './RoutePrivate';
 import Administration from '../screens/Administration';
 import { login } from '../actions/auth';
 import RoutePublic from './RoutePublic';
+import { startLoadingPlants } from '../actions/plants';
 
 const RouteApp = () => {
 
@@ -27,6 +28,7 @@ const RouteApp = () => {
             if ( user?.uid ) {
                 dispatch( login( user.uid, user.displayName ) );
                 setIsLoggedIn( true );
+                dispatch( startLoadingPlants( user.uid ) );
             } else {
                 setIsLoggedIn( false );
             }

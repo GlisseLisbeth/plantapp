@@ -34,9 +34,9 @@ const plantsReducer = ( state = initialState, action ) => {
             return {
                 ...state,
                 plants: state.plants.map(
-                    note => note.id === action.payload.id
-                        ? action.payload.note
-                        : note
+                    plant => plant.id === action.payload.id
+                        ? action.payload.plant
+                        : plant
                 )
             }
 
@@ -44,7 +44,7 @@ const plantsReducer = ( state = initialState, action ) => {
             return {
                 ...state,
                 active: null,
-                plants: state.plants.filter( note => note.id !== action.payload )
+                plants: state.plants.filter( plant => plant.id !== action.payload )
             } 
 
         case types.plantsLogoutCleaning:

@@ -1,91 +1,126 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
-import PlantsAppBar from './PlantsAppBar';
 import { useForm } from '../../hooks/useForm';
-import { activePlant, startDeleting } from '../../actions/plants';
+import { activePlant, startDeleting, startUploading, startSavePlant } from '../../actions/plants';
 
 const Plant = () => {
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const { active:plant } = useSelector(state => state.plants);
+  
+  const [formValues, handleInputChange, reset] = useForm(plant);
+  const { description, name, id } = formValues;
 
-    const { active:plant } = useSelector( state => state.plants );
-    const [ formValues, handleInputChange, reset ] = useForm( plant );
-    const { body, title, id } = formValues;
+  const activeId = useRef(plant.id);
 
-    const activeId = useRef( plant.id );
+  useEffect(() => {
 
-    useEffect(() => {
-        
-        if ( plant.id !== activeId.current ) {
-            reset( plant );
-            activeId.current = plant.id
-        }
-
-    }, [plant, reset])
-
-    useEffect(() => {
-        
-        dispatch( activePlant( formValues.id, { ...formValues } ) );
-
-    }, [formValues, dispatch])
-
-
-    const handleDelete = () => {
-        dispatch( startDeleting( id ) );
+    if (plant.id !== activeId.current) {
+      reset(plant);
+      activeId.current = plant.id
     }
 
+  }, [plant, reset])
 
-    return (
-        <div className="">
-            
-            <PlantsAppBar />
+  useEffect(() => {
 
-            <div className="">
+    dispatch(activePlant(formValues.id, { ...formValues }));
 
-                <input 
-                    type="text"
-                    placeholder="Some awesome title"
-                    className="plants__title-input"
-                    autoComplete="off"
-                    name="title"
-                    value={ title }
-                    onChange={ handleInputChange }
-                />
+  }, [formValues, dispatch])
 
-                <textarea
-                    placeholder="What happened today"
-                    className="plants__textarea"
-                    name="body"
-                    value={ body }
-                    onChange={ handleInputChange }
-                ></textarea>
+  const handlePictureClick = () => {
+      document.querySelector('#fileSelector').click();
+  }
 
-                {
-                    (plant.url) 
-                    && (
-                        <div className="plants__image">
-                            <img 
-                                src={ plant.url }
-                                alt="imagen"
-                            />
-                        </div>
-                    )
-                }
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      dispatch(startUploading(file));
+    }
+  }
 
+  const handleDelete = () => {
+    dispatch(startDeleting(id));
+  }
 
+  const handleSave = (e) => {
+    e.preventDefault();
+    dispatch(startSavePlant(plant));
+  }
+
+  return (
+    <div className="flex h-screen md:w-full w-4/5 m-auto flex-col">
+
+      <div className="flex justify-end  bg-green-300 text-gray-700 px-2 py-4">
+
+        <div className="space-x-4">
+          <button
+            className="btn shadow-inner bg-green-900 text-white px-4 py-2 mx-0 mb-2 outline-none focus:shadow-outline"
+            onClick={handleSave}
+          >
+            Guardar
+                </button>
+        </div>
+      </div>
+
+      <div className="flex flex-col h-full p-4 relative">
+
+        <input
+          type="text"
+          placeholder="Ingrese nombre de la planta"
+          className="appearance-none border-0 border-b rounded-none border-gray-300 w-full py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          autoComplete="off"
+          name="name"
+          value={name}
+          onChange={handleInputChange}
+        />
+
+        <textarea
+          placeholder="Ingrese descripción de la planta"
+          className="appearance-none border-0 border-b rounded-none border-gray-300 w-full py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          name="description"
+          value={description}
+          onChange={handleInputChange}
+        ></textarea>
+        <div className="mt-8">
+          <input
+            id="fileSelector"
+            type="file"
+            name="file"
+            style={{ display: 'none' }}
+            onChange={handleFileChange}
+          />
+          <button
+            className="btn shadow-inner bg-green-900 text-white px-4 py-2 mx-0 mb-2 outline-none focus:shadow-outline"
+            onClick={handlePictureClick}
+          >
+            Cargar Imagen
+                    </button>
+        </div>
+        {
+          (plant.url)
+          && (
+            <div className="absolute bottom-0 w-96">
+              <img
+                className="shadow"
+                src={plant.url}
+                alt="imagen"
+              />
             </div>
+          )
+        }
 
 
-            <button 
-                className="btn btn-danger"
-                onClick={ handleDelete }
-            >
-                Delete
+      </div>
+      <button
+        className="btn shadow-inner bg-red-400 text-white px-4 py-2 m-4 mb-2 outline-none focus:shadow-outline"
+        onClick={handleDelete}
+      >
+        Eliminar
             </button>
 
-        </div>
-    )
+    </div>
+  )
 }
 
 export default Plant;

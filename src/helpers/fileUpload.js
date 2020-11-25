@@ -2,8 +2,7 @@
 
 export const fileUpload = async ( file ) => {
 
-    const cloudUrl = 'https://api.cloudinary.com/v1_1/dx0pryfzn/upload';
-
+    const cloudUrl = 'https://api.cloudinary.com/v1_1/dbaiu1pew/upload';
     const formData = new FormData();
     formData.append('upload_preset','react-plant');
     formData.append('file', file );

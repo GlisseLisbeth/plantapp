@@ -1,13 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { Entry } from './Entry';
+import Entry from './Entry';
 
 const Entries = () => {
-
-    const { plants } = useSelector( state => state.plants );
+    const { plants } = useSelector( state  => state.plants );
 
     return (
-        <div className="">
+        <div className="flex-auto px-4 py-2 overflow-auto">
             
             {
                 plants.map( plant => (

@@ -6,12 +6,12 @@ import { useSelector } from 'react-redux';
 
 const Administration = () => {
 
-  const { active } = useSelector(state => state.plants);
-
+  const { active } = useSelector( state => state.plants) ;
+  console.log("Active:" + active);
   return (
-    <div className="flex">
+    <div className="flex flex-col md:flex-row relative">
       <Sidebar/>
-      <main className="w-4/5">
+      <main className="md:w-4/6 w-full">
         {
           (active)
             ? (<Plant />)

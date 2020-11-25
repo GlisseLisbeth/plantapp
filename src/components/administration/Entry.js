@@ -3,50 +3,51 @@ import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { activePlant } from '../../actions/plants';
 
-export const Entry = ({ id, date, title, body, url }) => {
+const Entry = ({ id, date, name, description, url }) => {
 
     const plantDate = moment(date);
     const dispatch = useDispatch();
-
+    
     const handleEntryClick = () => {
         dispatch( 
             activePlant( id, {
-                date, title, body, url
+                date, name, description, url
             })
         );
     }
 
     return (
         <div 
-            className=""
+            className="flex justify-between bg-white rounded color-gray-700 my-2 overflow-hidden"
             onClick={ handleEntryClick }
         >
             
             {
                 url &&
                 <div 
-                    className=""
+                    className="bg-cover w-full"
                     style={{
-                        backgroundSize: 'cover',
                         backgroundImage: `url(${ url })`
                     }}
                 ></div>
             }
 
-            <div className="">
-                <p className="">
-                    { title }
+            <div className="cursor-pointer p-2.5">
+                <p className="font-bold text-sm">
+                    { name }
                 </p>
-                <p className="">
-                    { body }
+                <p className="text-xs">
+                    { description }
                 </p>
             </div>
 
-            <div className="">
-                <span> { plantDate.format('dddd') } </span>
-                <h4> { plantDate.format('Do') } </h4>
+            <div className="flex justify-center flex-col p-1">
+                <h4 className="font-bold"> { plantDate.format('Do') } </h4>
+                <span className="capitalize"> { plantDate.format('dddd') } </span>
             </div>
 
         </div>
     )
 }
+
+export default Entry;

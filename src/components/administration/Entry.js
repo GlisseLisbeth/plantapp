@@ -7,7 +7,6 @@ const Entry = ({ id, date, name, description, url }) => {
 
     const plantDate = moment(date);
     const dispatch = useDispatch();
-    
     const handleEntryClick = () => {
         dispatch( 
             activePlant( id, {

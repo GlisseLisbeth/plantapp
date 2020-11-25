@@ -1,7 +1,6 @@
 import React, { useState} from 'react'
-import { useDispatch } from 'react-redux'
-
-import Entries from './Entries'
+import { useDispatch } from 'react-redux';
+import Entries from './Entries';
 import { startLogout } from '../../actions/auth';
 import { startNewPlant } from '../../actions/plants';
 import Logo from '../../img/icon.png';
@@ -17,12 +16,13 @@ const Sidebar = () => {
   }
 
   const handleAddNew = () => {
+    setShowSidebar(!showSideBar)
     dispatch(startNewPlant());
   }
   
   const toggleSidebar = () => setShowSidebar(!showSideBar);
   return (
-    <div class="md:w-2/6 absolute md:relative">
+    <div class="md:w-2/6 md:relative">
       <div class="md:hidden flex justify-start bg-green-500 p-2 w-screen">
         <button class="mr-2 focus:b-0 bg-green-900 rounded" aria-label="Open Menu"  onClick={() => toggleSidebar()}>
           <svg
@@ -39,10 +39,10 @@ const Sidebar = () => {
         </button>
         <img className="w-10 h-10 m-auto" src={Logo} alt="App Plant"></img>
       </div>
-      <aside className={`md:h-screen md:block md:flex w-full flex items-center flex-col justify-between bg-green-500 md:translate-x-0 transform ${
+      <aside className={`md:h-full md:block md:flex w-full flex items-center flex-col justify-between bg-green-500 md:translate-x-0 z-50 transform ${
           showSideBar
             ? "hidden -translate-x-full ease-in transition-medium"
-            : "block translate-x-0 ease-out transition-medium h-96"
+            : "block translate-x-0 ease-out transition-medium h-full"
         }`}>
         <div>
           <div
@@ -59,7 +59,9 @@ const Sidebar = () => {
               Agregar planta
             </p>
           </div>
-          <Entries />
+          <div class="hidden md:block">
+            <Entries />    
+          </div>
         </div>
         <button
           className="w-5/6 btn shadow-inner bg-green-900 text-white px-4 py-2 mx-0 mb-2 outline-none focus:shadow-outline"

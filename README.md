@@ -36,13 +36,13 @@ The development was carried out with the implemented technologies, even the appl
   - Redux: Redux is a predictable state container for JavaScript apps. It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test. You can use Redux together with React, or with any other view library.
   - Redux Thunk: Redux Thunk is a middleware that lets you call action creators that return a function instead of an action object. That function receives the store's dispatch method, which is then used to dispatch regular synchronous actions inside the function's body once the asynchronous operations have been completed.
 
-#### Requeriments
+### Requeriments
 
 ```
   npm install -g postcss-cli postcss postcss-import
 ```
 
-#### Deploy Local
+### Deploy Local
 Pre deploy 
 ```
   npm run install

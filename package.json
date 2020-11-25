@@ -11,6 +11,8 @@
     "moment": "^2.29.1",
     "moment-with-locales-es6": "^1.0.1",
     "postcss": "^8.1.10",
+    "postcss-cli": "^8.3.0",
+    "postcss-import": "^13.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^3.11.0",
@@ -24,14 +26,17 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "npm run watch:css && react-scripts start",
-    "build": "npm run build:css && react-scripts build",
+    "firebase:start": "npm run build && firebase serve",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:css": "npx tailwindcss build src/assets/tailwind.css -o public/output.css",
-    "watch:css": "npx tailwindcss build src/assets/tailwind.css -o public/output.css",
+    "watch:tailwind": "postcss src/assets/tailwind.css -o public/static/css/output.css -w",
+    "build:tailwind": "postcss src/assets/tailwind.css -o public/static/css/output.css",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "prebuild": "npm run build:tailwind",
+    "prestart": "npm run build:tailwind"
   },
   "eslintConfig": {
     "extends": [
@@ -55,6 +60,7 @@
     "autoprefixer": "^10.0.2",
     "cloudinary": "^1.23.0",
     "gh-pages": "^3.1.0",
+    "purgecss": "^3.0.0",
     "redux-mock-store": "^1.5.4",
     "tailwindcss": "^2.0.1"
   }

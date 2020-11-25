@@ -16,6 +16,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - Tailwindcss
   - Cloudinary
 
+#### Requeriments
+```
+  npm install -g postcss-cli postcss postcss-import
+```
+
 #### Deploy Local
 Prerequisite: 
 ```
